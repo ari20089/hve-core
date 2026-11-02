@@ -1873,6 +1873,24 @@ stimuli:
         name: skill-rpi-walkthrough-knowledge-read-only-boundary
         config:
           pattern: '(?i)^\s*read-only[.!]?\s*$'
+  - name: skill-rpi-tracking-audit-knowledge
+    prompt: |
+      Which rule ID does `rpi-tracking-audit` report for a possible credential
+      in a tracking artifact? Your entire response must be exactly the rule ID,
+      without Markdown or explanation.
+    environment:
+      skills:
+        - ../../.github/skills/rpi/rpi-tracking-audit
+    tags:
+      category: behavior-conformance
+      skill: rpi-tracking-audit
+      shape: knowledge
+      advisory: "true"
+    graders:
+      - type: output-matches
+        name: skill-rpi-tracking-audit-knowledge-credential-rule
+        config:
+          pattern: '(?i)^\s*HY1[.!]?\s*$'
   - name: skill-rpi-challenger-contract
     prompt: |
       How many skeptical questions does `rpi-challenger` ask per active turn?
